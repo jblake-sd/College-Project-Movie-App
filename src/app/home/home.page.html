@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      My Movie App
+      G00485482
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,9 @@
   </ion-header>
 
   <div id="container">
-    <strong>G00485482</strong>
-    <p>Start with BIbonic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <strong>Trending Movies</strong>
+    <div *ngFor="let movie of movies">
+      <p>{{ movie.title }}</p>
+      </div>
   </div>
 </ion-content>
