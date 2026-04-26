@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardTitle, IonCardHeader, IonCardContent } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { NgFor } from '@angular/common'
 
@@ -7,7 +7,7 @@ import { NgFor } from '@angular/common'
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, NgFor],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, NgFor, IonCard, IonCardTitle, IonCardHeader, IonCardContent],
 })
 
 export class HomePage {

@@ -13,10 +13,16 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Trending Movies</strong>
-    <div *ngFor="let movie of movies">
-      <p>{{ movie.title }}</p>
-      </div>
-  </div>
+<ion-card *ngFor="let movie of movies">
+  <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' +movie.poster_path" />
+    
+  <ion-card-header>
+    <ion-card-title>{{ movie.title }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+      <p>{{ movie.overview }}</p>
+  </ion-card-content>
+</ion-card>
+
 </ion-content>
