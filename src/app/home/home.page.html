@@ -7,22 +7,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">My Movie App</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <h2 style="text-align: center"; class="page-title">Trending Movies</h2>
 
-<ion-card *ngFor="let movie of movies">
-  <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' +movie.poster_path" />
+  <ion-card *ngFor="let movie of movies">
+    <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' +movie.poster_path" />
     
-  <ion-card-header>
-    <ion-card-title>{{ movie.title }}</ion-card-title>
-  </ion-card-header>
+    <ion-card-header>
+     <ion-card-title>{{ movie.title }}</ion-card-title>
+    </ion-card-header>
 
-  <ion-card-content>
+    <ion-card-content>
+      <p>Release date: {{ movie.release_date }}</p>
+      <p>Rating: {{ movie.vote_average | number: '1.0-1' }}/10</p>
       <p>{{ movie.overview }}</p>
-  </ion-card-content>
-</ion-card>
+      <ion-button>More details...</ion-button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
