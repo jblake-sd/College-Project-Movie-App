@@ -7,8 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-searchbar placeholder="Search movies" (ionInput)="onSearch($event)" debounce="500"></ion-searchbar>
   
-  <h2 style="text-align: center"; class="page-title">Trending Movies</h2>
+  <h2 style="text-align: center"; class="page-title">{{ pageTitle }}</h2>
 
   <ion-card *ngFor="let movie of movies">
     <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' +movie.poster_path" />
