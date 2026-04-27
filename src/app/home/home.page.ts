@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonButton, DecimalPipe, IonHeader, IonToolbar, IonTitle, IonContent, NgFor, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonSearchbar],
+  imports: [ IonButton, DecimalPipe, IonHeader, IonToolbar, IonTitle, IonContent, NgFor, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonSearchbar],
 })
 
 export class HomePage {
@@ -33,6 +33,10 @@ export class HomePage {
     const apiKey = '16116c99d8cfec890d546c27498eadb6';
     this.http.get(`https://api.themoviedb.org/3/search/movie?&api_key=${apiKey}&query=${query}`).subscribe((data: any) => {this.movies = data.results;
     })
+  }
+
+  openMovieDetails(movieId: number) {
+    this.router.navigate(['/movie-details', movieId])
   }
 
 }

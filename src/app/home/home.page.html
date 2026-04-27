@@ -23,7 +23,7 @@
       <p>Release date: {{ movie.release_date }}</p>
       <p>Rating: {{ movie.vote_average | number: '1.0-1' }}/10</p>
       <p>{{ movie.overview }}</p>
-      <ion-button>More details...</ion-button>
+      <ion-button (click)="openMovieDetails(movie.id)">More details...</ion-button>
     </ion-card-content>
   </ion-card>
 
