@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>G00485482</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2 style="text-align: center" class="page-title">"{{ person.name }}" Details</h2>
+<ion-card *ngIf="person">
+  <img alt="Person Poster" [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path" />
+
+  <ion-card-header><ion-card-title>{{ person.name }}</ion-card-title></ion-card-header>
+
+  <ion-card-content>
+    <p>DOB: {{ person.birthday }}</p>
+    <p *ngIf="person.deathday">DOD: {{ person.deathday }}</p>
+    <p *ngIf="person.also_known_as">Also known as: {{ person.also_known_as }}</p>
+    <p>Biography: {{ person.biography }}</p>
+  </ion-card-content>
+</ion-card>
+
+<h2 class="page-title">Other Movies</h2>
+  <ion-card *ngFor="let credit of combinedCredits">
+    <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' + credit.poster_path" />
+
+    <ion-card-header><ion-card-title>{{ credit.title }}</ion-card-title></ion-card-header>
+
+  <ion-card-content>
+    <p>Character: {{ credit.character }}</p>
+    <p>Release Date: {{ credit.release_date }}</p>
+    <p>Rating: {{ credit.vote_average | number: '1.0-1' }}/10</p>
+  </ion-card-content>
+
+
+  </ion-card>
+</ion-content>

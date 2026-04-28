@@ -26,6 +26,7 @@
     <ion-card-content>
       <p><strong style="font-size: medium">"{{ actor.character }}"</strong></p>
       <p>{{ actor.name }}</p>
+      <ion-button (click)="openPersonDetails(actor.id)">View Person Details</ion-button>
     </ion-card-content>
 
 </ion-card>
@@ -38,6 +39,7 @@
   <ion-card-content>
     <p><strong style="font-size: medium">{{ member.job }}</strong></p>
     <p>{{ member.name }}</p>
+    <ion-button (click)="openPersonDetails(member.id)">View Person Details</ion-button>
   </ion-card-content>
 
 </ion-card>
