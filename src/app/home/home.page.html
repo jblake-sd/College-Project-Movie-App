@@ -12,6 +12,8 @@
   
   <h2 style="text-align: center"; class="page-title">{{ pageTitle }}</h2>
 
+  <ion-button (click)="openFavourites()">Favourites</ion-button>
+
   <ion-card *ngFor="let movie of movies">
     <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' +movie.poster_path" />
     
@@ -24,6 +26,7 @@
       <p>Rating: {{ movie.vote_average | number: '1.0-1' }}/10</p>
       <p>{{ movie.overview }}</p>
       <ion-button (click)="openMovieDetails(movie.id)">More details...</ion-button>
+      <ion-button (click)="addToFavourites(movie)">Add to Favourites</ion-button>
     </ion-card-content>
   </ion-card>
 

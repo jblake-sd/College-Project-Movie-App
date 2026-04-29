@@ -19,10 +19,19 @@ export class HomePage {
 
   movies: any[] = [];
 
+  favourites: any[] = [];
+
   constructor(private http: HttpClient, private router: Router) {
     const apiKey = '16116c99d8cfec890d546c27498eadb6';
     this.http.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`).subscribe((data: any) => {this.movies = data.results; console.log(this.movies);
         })
+  }
+
+  ngOnInit() {
+    const stored = localStorage.getItem('favourites');
+    if (stored) { 
+      this.favourites = JSON.parse(stored);
+    }
   }
 
   onSearch(event: any) {
@@ -37,6 +46,15 @@ export class HomePage {
 
   openMovieDetails(movieId: number) {
     this.router.navigate(['/movie-details', movieId])
+  }
+
+  openFavourites() {
+    this.router.navigate(['/favourites'])
+  }
+
+  addToFavourites(movie: any) {
+    this.favourites.push(movie);
+    localStorage.setItem('favourites', JSON.stringify(this.favourites));
   }
 
 }
