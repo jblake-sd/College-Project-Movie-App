@@ -24,6 +24,7 @@
   </ion-card-content>
 </ion-card>
 
+<!--these cards show the other movies of the selected actor. This info was pulled from the database-->
 <h2 class="page-title">Other Movies</h2>
   <ion-card *ngFor="let credit of combinedCredits">
     <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' + credit.poster_path" />

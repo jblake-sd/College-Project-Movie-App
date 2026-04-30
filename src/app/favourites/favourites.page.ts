@@ -47,7 +47,5 @@ export class FavouritesPage implements OnInit {
     this.router.navigate(['/favourites'])
   }
 
-  // removeFromFavourites(favourite.id) {
-
   }
 

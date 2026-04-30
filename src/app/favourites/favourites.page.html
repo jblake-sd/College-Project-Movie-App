@@ -11,6 +11,7 @@
 
   <ion-button (click)="openFavourites()"><ion-icon [icon]="star" slot="start"></ion-icon>Favourites</ion-button>
 
+  <!--these cards contains and display the information for all the favourited movies. Info is retireved from the database-->
   <ion-card *ngFor="let favourite of favourites">
     <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' + favourite.poster_path" />
 
@@ -23,7 +24,6 @@
        <p>Rating: {{ favourite.vote_average | number: '1.0-1' }}/10</p>
        <p>{{ favourite.overview }}</p>
        <ion-button (click)="openMovieDetails(favourite.id)">More details...</ion-button>
-       <!-- ion-button (click)="removeFromFavourites(favourite)">Add to Favourites</ion-button> -->
      </ion-card-content>
   
   </ion-card>

@@ -39,9 +39,8 @@ constructor(private http: HttpClient, private route: ActivatedRoute, private rou
     })
     this.http.get(`https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${apiKey}`)
     .subscribe((data: any) => 
-      {console.log('Combined credits data:', data);
-        this.combinedCredits = data.cast;
-        console.log('Stored combined credits:', this.combinedCredits);
+      {this.combinedCredits = data.cast;
+        this.combinedCredits;
     });
     const stored = localStorage.getItem('favourites');
     if (stored) {

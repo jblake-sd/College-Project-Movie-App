@@ -18,6 +18,7 @@ import { home, star } from 'ionicons/icons';
 })
 export class MovieDetailsPage implements OnInit {
 
+//sets up variables
 movie: any;
 
 cast: any[] = [];
@@ -35,18 +36,14 @@ star = star;
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
+  //info pulled from database for movies, cast, crew & person details
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('Movie ID:', id)
     const apiKey = '16116c99d8cfec890d546c27498eadb6';
-    this.http.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`).subscribe((data: any) => {console.log('Movie details:', data); 
-      this.movie = data;})
-    this.http.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`).subscribe((data: any) => {console.log('Cast details:', data);
-      this.cast = data.cast;})
-    this.http.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`).subscribe((data: any) => {console.log('Crew details:', data);
-      this.crew = data.crew;})
-    this.http.get(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}`).subscribe((data: any) => {this.person = data;
-        });
+    this.http.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`).subscribe((data: any) => {this.movie = data;});
+    this.http.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`).subscribe((data: any) => {this.cast = data.cast;});
+    this.http.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`).subscribe((data: any) => {this.crew = data.crew;});
+    this.http.get(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}`).subscribe((data: any) => {this.person = data;});
     const stored = localStorage.getItem('favourites');
     if (stored) { 
       this.favourites = JSON.parse(stored);
