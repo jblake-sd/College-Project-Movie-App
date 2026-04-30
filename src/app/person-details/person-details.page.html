@@ -6,6 +6,11 @@
 
 <ion-content>
   <h2 style="text-align: center" class="page-title">"{{ person.name }}" Details</h2>
+
+  <ion-button (click)="openHome()"><ion-icon [icon]="home" slot="start"></ion-icon>Home</ion-button>
+
+  <ion-button (click)="openFavourites()"><ion-icon [icon]="star" slot="start"></ion-icon>Favourites</ion-button>  
+
 <ion-card *ngIf="person">
   <img alt="Person Poster" [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path" />
 
@@ -30,6 +35,8 @@
     <p>Release Date: {{ credit.release_date }}</p>
     <p>Rating: {{ credit.vote_average | number: '1.0-1' }}/10</p>
     <p>{{ credit.overview }}</p>
+    <ion-button *ngIf="!isFavourite(credit)" (click)="addToFavourites(credit)">Add to Favourties</ion-button>
+    <ion-button *ngIf="isFavourite(credit)" (click)="removeFromFavourites(credit)">Remove from Favourites</ion-button>
   </ion-card-content>
 
 

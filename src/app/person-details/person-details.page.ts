@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonCardTitle, IonCardHeader, IonCard, IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonButton, IonCardTitle, IonCardHeader, IonCard, IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { NgFor } from '@angular/common'
+import { NgFor, NgIf } from '@angular/common'
+import { IonIcon } from '@ionic/angular/standalone';
+import { home, star } from 'ionicons/icons';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +15,7 @@ import { NgFor } from '@angular/common'
   templateUrl: './person-details.page.html',
   styleUrls: ['./person-details.page.scss'],
   standalone: true,
-  imports: [ NgFor, IonCardTitle, IonCardHeader, IonCard, IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonIcon, NgIf, IonButton, NgFor, IonCardTitle, IonCardHeader, IonCard, IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton]
 })
 export class PersonDetailsPage implements OnInit {
 
@@ -20,7 +23,13 @@ person: any;
 
 combinedCredits: any[] = [];
 
-constructor(private http: HttpClient, private route: ActivatedRoute) { }
+favourites: any[] = [];
+
+home = home;
+
+star = star;
+
+constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,7 +43,33 @@ constructor(private http: HttpClient, private route: ActivatedRoute) { }
         this.combinedCredits = data.cast;
         console.log('Stored combined credits:', this.combinedCredits);
     });
+    const stored = localStorage.getItem('favourites');
+    if (stored) {
+      this.favourites = JSON.parse(stored);
+    }
 
   }
 
+  isFavourite(credit: any) {
+    return this.favourites.some(fav => fav.id === credit.id);
+  }
+
+  addToFavourites(credit: any) {
+  if (!this.isFavourite(credit)) {
+    this.favourites.push(credit);
+    localStorage.setItem('favourites', JSON.stringify(this.favourites));
+  }}
+
+  removeFromFavourites(credit: any) {
+    this.favourites = this.favourites.filter(fav => fav.id !== credit.id);
+    localStorage.setItem('favourites', JSON.stringify(this.favourites));
+  }
+
+  openHome() {
+    this.router.navigate(['/home']);
+  }
+
+  openFavourites() {
+    this.router.navigate(['/favourites'])
+  }
 }

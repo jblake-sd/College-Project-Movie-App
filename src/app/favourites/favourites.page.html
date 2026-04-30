@@ -7,19 +7,23 @@
 <ion-content>
   <h2 style="text-align: center" class="page-title">Favourites</h2>
 
+  <ion-button (click)="openHome()"><ion-icon [icon]="home" slot="start"></ion-icon>Home</ion-button>
+
+  <ion-button (click)="openFavourites()"><ion-icon [icon]="star" slot="start"></ion-icon>Favourites</ion-button>
+
   <ion-card *ngFor="let favourite of favourites">
-    <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' +favourite.poster_path" />
+    <img alt="Movie Poster" [src]="'https://image.tmdb.org/t/p/w500' + favourite.poster_path" />
 
     <ion-card-header>
-      <ion-card-title>{{ favourite.title }}</ion-card-title>
+      <ion-card-title>{{ favourite.title || favourite.name }}</ion-card-title>
      </ion-card-header>
  
      <ion-card-content>
-       <p>Release date: {{ favourite.release_date }}</p>
+       <p>Release date: {{ favourite.release_date || favourite.first_air_date }}</p>
        <p>Rating: {{ favourite.vote_average | number: '1.0-1' }}/10</p>
        <p>{{ favourite.overview }}</p>
        <ion-button (click)="openMovieDetails(favourite.id)">More details...</ion-button>
-       <!-- <ion-button (click)="removeFromFavourites(favourite)">Add to Favourites</ion-button> -->
+       <!-- ion-button (click)="removeFromFavourites(favourite)">Add to Favourites</ion-button> -->
      </ion-card-content>
   
   </ion-card>

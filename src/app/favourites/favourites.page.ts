@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonButton, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonTitle, IonToolbar, IonCard } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { NgFor } from '@angular/common';
+import { IonIcon } from '@ionic/angular/standalone';
+import { home, star } from 'ionicons/icons';
 
 
 @Component({
@@ -11,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './favourites.page.html',
   styleUrls: ['./favourites.page.scss'],
   standalone: true,
-  imports: [ IonButton, IonCardHeader, IonCardContent, IonCardTitle, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard]
+  imports: [ IonIcon, NgFor, IonButton, IonCardHeader, IonCardContent, IonCardTitle, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard]
 })
 
 export class FavouritesPage implements OnInit {
@@ -20,6 +23,10 @@ export class FavouritesPage implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   favourites: any[] = [];
+
+  home = home;
+
+  star = star;
 
   ngOnInit() {
     const stored = localStorage.getItem('favourites');
@@ -30,6 +37,14 @@ export class FavouritesPage implements OnInit {
 
   openMovieDetails(movieId: number) {
     this.router.navigate(['/movie-details', movieId])
+  }
+
+  openHome() {
+    this.router.navigate(['/home']);
+  }
+
+  openFavourites() {
+    this.router.navigate(['/favourites'])
   }
 
   // removeFromFavourites(favourite.id) {
